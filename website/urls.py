@@ -6,5 +6,5 @@ urlpatterns = [
     path('about/', about_view, name="about"),
     path('contact/', contact_view, name="contact"),
     path('department/', department_view, name="department"),
-    path('department/<int:did>/', department_view, name="department-single"),
+    path('department/<int:pid>/', department_single_view, name="department-single"),
 ]
