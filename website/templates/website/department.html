@@ -45,12 +45,12 @@
                       <img src="{{department.image.url}}" alt="" class="img-fluid w-100">
                       <div class="content">
                           <h4 class="mt-4 mb-2 title-color">{{department.title}}</h4>
-                          <p class="mb-4">{{department.description}}</p>
+                          <p class="mb-4">{{department.description|truncatechars:80}}</p>
                           <a href="{% url 'department-single' department.id %}" class="read-more">Learn More  <i class="icofont-simple-right ml-2"></i></a>
                       </div>
                   </div>
+                </div>
                   {% endfor %}
-              </div>
   
           </div>
       </div>

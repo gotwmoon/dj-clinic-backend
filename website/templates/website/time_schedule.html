@@ -1,0 +1,13 @@
+
+<div class="feature-item mb-5 mb-lg-0">
+    <div class="feature-icon mb-4">
+        <i class="icofont-ui-clock"></i>
+    </div>
+    <span>Timing schedule</span>
+    <h4 class="mb-3">Working Hours</h4>
+    <ul class="w-hours list-unstyled">
+        {% for day in time_schedule %}
+        <li class="d-flex justify-content-between"><span>{{day}}</span></li>
+        {% endfor %}
+    </ul>
+</div>
