@@ -1,0 +1,13 @@
+{% load humanize %}
+
+<div class="sidebar-widget latest-post mb-3">
+    <h5>Latest Posts</h5>
+
+    {% for post in posts %}
+    <div class="py-2">
+        <span class="text-sm text-muted">{{post.published_date|naturaltime}}</span>
+        <h6 class="my-2"><a href="{% url 'blog-single' pid=post.id %}">{{post.title}}</a></h6>
+    </div>
+    {% endfor %}
+ 
+</div>

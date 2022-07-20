@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load blog_tags %}
+{% load blog_tags  %}
 
 {% block content %}
 
@@ -63,8 +63,8 @@
 		{% include 'blog/blog-search.html' %}	
 
 		
-		{% include 'blog/popular-post.html' %}
-    
+		
+    {% latest_posts %}
 
 		{% include 'blog/category.html' %}
 
