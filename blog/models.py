@@ -1,7 +1,7 @@
 from distutils.command.upload import upload
 from email.policy import default
 from django.db import models
-
+from taggit.managers import TaggableManager
 
 class Category(models.Model):
     name = models.CharField(max_length=250)
@@ -15,7 +15,7 @@ class Post(models.Model):
     content = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='blog/', default='blog/default.jpg')
     category = models.ManyToManyField(Category)
-    #tag
+    tags =  TaggableManager()
     status = models.BooleanField(default=False)
     published_date = models.DateTimeField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
