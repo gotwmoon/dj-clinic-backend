@@ -75,17 +75,28 @@
         </div>
 
         <div class="row mt-5">
-            <div class="col-lg-8">
+          <div class="col-lg-8">
+            {% if posts.has_other_pages %}
                 <nav class="pagination py-2 d-inline-block">
                     <div class="nav-links">
-                        <span aria-current="page" class="page-numbers current">1</span>
-                        <a class="page-numbers" href="#">2</a>
-                        <a class="page-numbers" href="#">3</a>
-                        <a class="page-numbers" href="#"><i class="icofont-thin-double-right"></i></a>
-                    </div>
+                      {% if posts.has_previous %}
+                      <a class="page-numbers" href="?page={{posts.previous_page_number}}"><i class="icofont-thin-double-left"></i></a>
+                      {% endif %}
+                      {% for i in posts.paginator.page_range %}
+                        {% if posts.number == i %}
+                        <span aria-current="page" class="page-numbers current">{{i}}</span>
+                        {% else %}
+                        <a class="page-numbers" href="?page={{i}}">{{i}}</a>
+                        {% endif %}
+                      {% endfor %}
+                      {% if posts.has_next %}  
+                        <a class="page-numbers" href="?page={{posts.next_page_number}}"><i class="icofont-thin-double-right"></i></a>
+                      {% endif %}  
+                      </div>
                 </nav>
+                {% endif %}
+              </div>
             </div>
-        </div>
     </div>
 </section>
 

@@ -1,7 +1,7 @@
 <div class="sidebar-widget search  mb-3 ">
     <h5>Search Here</h5>
-    <form action="#" class="search-form">
-        <input type="text" class="form-control" placeholder="search">
+    <form action="{% url 'search' %}" method="get" class="search-form">
+        <input type="text" class="form-control" placeholder="search" name="s" value="{{s}}">
         <i class="ti-search"></i>
     </form>
 </div>
