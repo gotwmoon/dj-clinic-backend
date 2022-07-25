@@ -1,4 +1,5 @@
 from distutils.command.upload import upload
+import email
 from email.policy import default
 from pydoc import describe
 from django.db import models
@@ -50,4 +51,14 @@ class TimeSchedule(models.Model):
         return "{}:  {} - {}".format(self.get_weekday_display(), self.from_hour, self.to_hour)    
     
     
-        
+class Contact(models.Model):
+    name = models.CharField(max_length=200)
+    phone = models.CharField(max_length=50)
+    subject = models.CharField(max_length=255, null=True, blank=True)
+    email = models.EmailField()
+    message = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)        
+    updated_date = models.DateTimeField(auto_now=True)        
+
+    def __str__(self):
+        return self.name
