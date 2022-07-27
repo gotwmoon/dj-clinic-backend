@@ -1,7 +1,8 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from .models import Department, Service, TimeSchedule
-from .forms import ContactForm
+from .forms import ContactForm, NewsletterForm
 
 def index_view(request):
     
@@ -23,7 +24,21 @@ def contact_view(request):
             messages.error(request ,"Your ticket didnt submited")
 
     form = ContactForm()            
-    return render(request, 'website/contact.html', {'form':form})    
+    return render(request, 'website/contact.html', {'form':form})   
+
+def newsletter_view(request):
+
+    if request.method == 'POST':     
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request ,"Your email submited successfuly")
+            return HttpResponseRedirect('/')
+    else:
+        messages.error(request ,"Your email didnt submited")
+        return HttpResponseRedirect('/')
+
+
 
 def department_view(request):
     deparments = Department.objects.all()

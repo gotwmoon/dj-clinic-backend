@@ -1,5 +1,7 @@
 from distutils.command.upload import upload
+from email import message
 from email.policy import default
+from pyexpat import model
 from django.db import models
 from taggit.managers import TaggableManager
 
@@ -27,3 +29,18 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    message = models.TextField()
+    approved = models.BooleanField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['-created_date']    
+    
