@@ -1,10 +1,13 @@
+
+from audioop import reverse
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .forms import CustomUserCreationForm
-from website.models import Department
-
+from .forms import AppoinmentForm, CustomUserCreationForm
+from django.http import HttpResponseRedirect
+from .models import Appoinment
 
 def login_view(request):
 
@@ -21,7 +24,7 @@ def login_view(request):
         except:
             messages.error(request, "User does not exist")
 
-            user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
         if user:
             login(request, user)
@@ -31,8 +34,11 @@ def login_view(request):
 
     return render(request, 'users/login-signup.html')                
 
+@login_required
 def logout_view(request):
-    pass
+    logout(request)
+    messages.info(request, "User logged out")
+    return redirect('/')
 
 def signup_view(request):
 
@@ -56,7 +62,22 @@ def signup_view(request):
     context = {'page':page, 'form':form}
     return render(request, 'users/login-signup.html', context)        
 
-def appiontment(request):
-    departments = Department.objects.all()
-    context = {'departments':departments}
+def appionment(request):
+    patient = request.user.patient
+    if request.method == 'POST':
+        form = AppoinmentForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.patient = patient
+            obj.save()
+            return redirect('confirmation')
+        else:
+            messages.error(request, "An error has accurrede during appoinment!")
+
+    form = AppoinmentForm()
+    context = {'form':form}
     return render(request, 'users/appointment.html', context)
+
+def confirmation(request):
+    appionments = Appoinment.objects.all()
+    return render(request, 'users/confirmation.html', {'appionments':appionments})    
