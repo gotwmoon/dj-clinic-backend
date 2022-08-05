@@ -88,6 +88,11 @@ def update_patient_profile(request):
         form = PatientForm(request.POST, instance=patient)
         if form.is_valid():
             form.save()
+            messages.success(request, "Profile updated")
+        else:
+            messages.error(request, "An error has accurrede during update profile!")
+
+
             
     context = {'form':form}
     return render(request, 'users/patient-profile.html', context)    
