@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="col-lg-8">
+    <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
+     <h2 class="mb-2 title-color">Profile</h2>
+     <p class="mb-4">Mollitia dicta commodi est recusandae iste, natus eum asperiores corrupti qui velit . Iste dolorum atque similique praesentium soluta.</p>
+        <form  class="appoinment-form" method="post" action="{% url 'profile' %}">
+         {% csrf_token %}
+         
+         <div class="col-lg-6">
+           <div class="form-group">
+                      {% for field in form %}
+                        <label>{{field.label}}</label>
+                        {{field}}
+                        {% endfor %}
+                    </div>
+                </div>
+             <div class="col-lg-6">
+                 <input type="submit" class="btn btn-main btn-round-full" value="Submit" class="icofont-simple-right ml-2">
+             </div>
+         </form>
+     </div>
+ </div>
+
+
+{% endblock %}

@@ -10,8 +10,8 @@ class Patient(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField(max_length=300,null=True, blank=True)
     username = models.CharField(max_length=255, null=True, blank=True)
-    birthday = models.DateField()
-    phone = models.CharField(max_length=30)
+    birthday = models.DateField( null=True, blank=True)
+    phone = models.CharField(max_length=30,  null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     GENDER_CHOICES = (
         ('M', 'Male'),

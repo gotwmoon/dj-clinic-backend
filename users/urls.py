@@ -7,4 +7,5 @@ urlpatterns = [
     path('signup/', signup_view, name="signup"),
     path('appoinment/', appionment, name="appoinment"),
     path('confirmation/', confirmation, name="confirmation"),
+    path('profile/', update_patient_profile, name='profile'),
 ]

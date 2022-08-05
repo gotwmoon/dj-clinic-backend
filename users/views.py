@@ -1,13 +1,11 @@
 
-from audioop import reverse
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .forms import AppoinmentForm, CustomUserCreationForm
-from django.http import HttpResponseRedirect
-from .models import Appoinment
+from .forms import AppoinmentForm, CustomUserCreationForm, PatientForm
+from .models import Appoinment, Patient
 
 def login_view(request):
 
@@ -67,9 +65,9 @@ def appionment(request):
     if request.method == 'POST':
         form = AppoinmentForm(request.POST)
         if form.is_valid():
-            obj = form.save(commit=False)
-            obj.patient = patient
-            obj.save()
+            patient_obj = form.save(commit=False)
+            patient_obj.patient = patient
+            patient_obj.save()
             return redirect('confirmation')
         else:
             messages.error(request, "An error has accurrede during appoinment!")
@@ -81,3 +79,15 @@ def appionment(request):
 def confirmation(request):
     appionments = Appoinment.objects.all()
     return render(request, 'users/confirmation.html', {'appionments':appionments})    
+
+def update_patient_profile(request):
+    patient = request.user.patient
+
+    form = PatientForm(instance=patient)
+    if request.method == 'POST':
+        form = PatientForm(request.POST, instance=patient)
+        if form.is_valid():
+            form.save()
+            
+    context = {'form':form}
+    return render(request, 'users/patient-profile.html', context)    

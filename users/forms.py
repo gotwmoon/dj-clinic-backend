@@ -1,7 +1,6 @@
 
-
 from django.contrib.auth.models import User
-from .models import Appoinment
+from .models import Appoinment, Patient
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from django import forms
@@ -27,6 +26,20 @@ class AppoinmentForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AppoinmentForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class':"form-control"})    
+
+class PatientForm(ModelForm):
+    class Meta:
+        model = Patient
+        fields = ['name', 'email', 'username', 'birthday', 'phone', 'gender']        
+        widgets = {
+        'birthday': forms.DateInput(format=('%m/%d/%Y'), attrs={'type':'date'}),
+    } 
+
+    def __init__(self, *args, **kwargs):
+        super(PatientForm, self).__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
             field.widget.attrs.update({'class':"form-control"})    
