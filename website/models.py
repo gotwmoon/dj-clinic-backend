@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 class Department(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True)
-    director = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to = 'department/', default='department/default.jpg') 
     created_date = models.DateTimeField(auto_now_add=True)
