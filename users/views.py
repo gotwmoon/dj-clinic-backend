@@ -1,4 +1,6 @@
 
+import email
+from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, authenticate, logout
@@ -6,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import AppoinmentForm, CustomUserCreationForm, PatientForm
 from .models import Appoinment, Patient
+from django.core.mail import send_mail
 
 def login_view(request):
 
@@ -67,6 +70,14 @@ def appionment(request):
         if form.is_valid():
             patient_obj = form.save(commit=False)
             patient_obj.patient = patient
+
+            clean_data = form.cleaned_data
+            subject = 'Appointment Request'
+            msg= "Name: "  + clean_data['name'] + ", Email: " + clean_data['email'] + ", Date: " + str(clean_data['date']) + ", Message: " + clean_data['message']
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [clean_data['email']]
+            send_mail(subject, msg, email_from, recipient_list)
+
             patient_obj.save()
             return redirect('confirmation')
         else:
