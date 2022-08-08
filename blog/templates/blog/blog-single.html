@@ -80,18 +80,11 @@
 
 									{% for comment in comments %}
 									<div class="comment-area-box">
-										<div class="comment-thumb float-left">
-											<img alt="" src="images/blog/testimonial1.jpg" class="img-fluid">
-										</div>
 										<div class="comment-info">
 											<h5 class="mb-1">{{comment.name}}</h5>
-											
 											<span class="date-comm">{{comment.created_date|naturalday}}</span>
 										</div>
-										<div class="comment-meta mt-2">
-											<a href="#"><i class="icofont-reply mr-2 text-muted"></i>Reply</a>
-										</div>
-
+										
 										<div class="comment-content mt-3">
 											<p>{{comment.message}}</p>
 										</div>

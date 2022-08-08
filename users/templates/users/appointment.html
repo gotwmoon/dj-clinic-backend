@@ -39,21 +39,69 @@
              <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
               <h2 class="mb-2 title-color">Book an appoinment</h2>
               <p class="mb-4">Mollitia dicta commodi est recusandae iste, natus eum asperiores corrupti qui velit . Iste dolorum atque similique praesentium soluta.</p>
+
+
                  <form  class="appoinment-form" method="post" action="{% url 'appoinment' %}">
                   {% csrf_token %}
                   
-                  <div class="col-lg-6">
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                       <div class="form-group">
+                           <select class="form-control"  name="department">
+                             <option>Choose Department</option>
+                            {% for department in departments %}
+                             <option value="{{department.id}}">{{department}}</option>
+                            {% endfor %}
+                           </select>
+                       </div>
+                   </div>
+            
+
+                   {% if patient.name %}
+                      <input type="hidden" name="name" id="name" value="{{patient.name}}">
+                   {% else %}
+                    <div class="col-lg-6">
+                       <div class="form-group">
+                           <input name="name" id="name"  type="text" class="form-control" placeholder="Full Name">
+                       </div>
+                   </div>
+                   {% endif %} 
+
+                   <input type="hidden" name="email" id="email" value="{{patient.email}}">
+
+                   <div class="col-lg-6">
                     <div class="form-group">
-                               {% for field in form %}
-                                 <label>{{field.label}}</label>
-                                 {{field}}
-                                 {% endfor %}
-                             </div>
-                         </div>
-                      <div class="col-lg-6">
-                          <input type="submit" class="btn btn-main btn-round-full" value="Make Appoinment" class="icofont-simple-right ml-2">
-                      </div>
-                  </form>
+                        <input name="date" id="date" type="date" class="form-control" placeholder="dd/mm/yyyy">
+                    </div>
+                </div>
+
+                   {% if patient.phone %}
+                    <input type="hidden" name="phone" id="phone" value="{{patient.phone}}">
+                   {% else %}
+                   <div class="col-lg-6">
+                       <div class="form-group">
+                           <input name="phone" id="phone"  type="Number" class="form-control" placeholder="Phone Number">
+                       </div>
+                   </div>
+                   {% endif %}
+
+               </div>
+               <div class="form-group-2 mb-4">
+                   <textarea name="message" id="message" class="form-control" rows="6" placeholder="Your Message"></textarea>
+               </div>
+
+               <div class="pb-4" >
+                {{form.captcha}}
+              </div>
+              
+               <div class="col-lg-6">
+                 <input type="submit" class="btn btn-main btn-round-full" value="Make Appoinment" class="icofont-simple-right ml-2">
+                </div>
+              </form>
+              
+
+
               </div>
           </div>
         </div>

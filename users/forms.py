@@ -4,6 +4,8 @@ from .models import Appoinment, Patient
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from django import forms
+from captcha.fields import CaptchaField
+
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -17,6 +19,7 @@ class CustomUserCreationForm(UserCreationForm):
             field.widget.attrs.update({'class':'form-group'})
 
 class AppoinmentForm(ModelForm):
+    captcha = CaptchaField()
     class Meta:
         model = Appoinment
         fields = ['department', 'name', 'email', 'date', 'phone', 'message']

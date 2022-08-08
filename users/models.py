@@ -26,7 +26,7 @@ class Appoinment(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=255)
-    email = models.EmailField()
+    email = models.EmailField(null=True, blank=True)
     date = models.DateField()
     phone = models.CharField(max_length=100)
     message = models.TextField(null=True, blank=True)

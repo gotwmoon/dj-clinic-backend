@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'taggit',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -160,3 +161,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
+# captcha confi 
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'

@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import AppoinmentForm, CustomUserCreationForm, PatientForm
 from .models import Appoinment, Patient
+from website.models import Department
 from django.core.mail import send_mail
 
 def login_view(request):
@@ -63,11 +64,17 @@ def signup_view(request):
     context = {'page':page, 'form':form}
     return render(request, 'users/login-signup.html', context)        
 
+
+@login_required(login_url='login')
 def appionment(request):
+
     patient = request.user.patient
+    departments = Department.objects.all()
+
     if request.method == 'POST':
         form = AppoinmentForm(request.POST)
         if form.is_valid():
+            
             patient_obj = form.save(commit=False)
             patient_obj.patient = patient
 
@@ -84,7 +91,7 @@ def appionment(request):
             messages.error(request, "An error has accurrede during appoinment!")
 
     form = AppoinmentForm()
-    context = {'form':form}
+    context = {'form':form, 'departments':departments, 'patient':patient}
     return render(request, 'users/appointment.html', context)
 
 def confirmation(request):
