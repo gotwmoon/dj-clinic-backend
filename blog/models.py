@@ -1,7 +1,5 @@
-from distutils.command.upload import upload
-from email import message
-from email.policy import default
-from pyexpat import model
+
+from django.urls import reverse
 from django.db import models
 from taggit.managers import TaggableManager
 
@@ -28,6 +26,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog-single', kwargs={'pid':self.id})   
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

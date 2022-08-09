@@ -33,6 +33,10 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# sites framework
+SITE_ID = 2
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'robots',
     'website.apps.WebsiteConfig',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
