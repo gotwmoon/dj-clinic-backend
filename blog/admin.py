@@ -1,7 +1,9 @@
 from django.contrib import admin
 from .models import Post, Category, Comment
+from django_summernote.admin import SummernoteModelAdmin
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(SummernoteModelAdmin):
+    summernote_fields = ('content',)
     date_hierarchy = 'created_date'
     empty_value_display = '__empty__'
     list_display = ('title', 'status', 'published_date', 'created_date')

@@ -35,11 +35,17 @@ urlpatterns = [
     path('users/', include('users.urls')),
 
     path('captcha/', include('captcha.urls')),
+    path('summernote/', include('django_summernote.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
+
+
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', include('robots.urls')),     
 ]
 
 
+
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
