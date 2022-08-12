@@ -168,15 +168,9 @@ MESSAGE_TAGS = {
         messages.ERROR: 'alert-danger',
  }
 
- # SMTP Configuration
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
-# captcha confi 
+
+# Captcha Config 
 CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 
 
@@ -225,3 +219,11 @@ SUMMERNOTE_CONFIG = {
 }
 # Show summernote with Bootstrap4
 SUMMERNOTE_THEME = 'bs4'  
+
+# SMTP Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')

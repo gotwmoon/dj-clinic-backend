@@ -4,8 +4,8 @@
 
 {% if page == 'signup' %}
 
-<h1>Sing Up</h1>
-<div class="col-lg-6">
+<div class="col-lg-6 m-2" >
+    <h1>Sing Up</h1>
     <form class="contact__form" action="{% url 'signup' %}" method="post">
         {% csrf_token %}
 
@@ -23,14 +23,14 @@
 
     </form>
 
-    <p>Already have an Account?</p>
+    <small>Already have an Account?</small>
     <a class="btn btn-main btn-round-full" href="{% url 'login' %}">Login</a>
 </div>
 
 {% else %}
 
-<h1>Login</h1>
-<div class="col-lg-6">
+<div class="col-lg-6 m-2">
+    <h1>Login</h1>
     <form class="contact__form" action="{% url 'login' %}" method="post">
         {% csrf_token %}
 
@@ -55,9 +55,13 @@
 
     </form>
 
-    <div>
-        <p>Don’t have an Account?</p>
+    <div class="m-2">
+        <small>Don’t have an Account?</small>
         <a class="btn btn-main btn-round-full" href="{% url 'signup' %}">Sign Up</a>
+    </div>
+    <div class="m-2">
+        <small>Forgot Password?</small>
+        <a class="btn btn-main btn-round-full" href="{% url 'reset_password' %}">Reset Password</a>
     </div>
 
 </div>
