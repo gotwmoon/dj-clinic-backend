@@ -1,4 +1,7 @@
 {% load static %}
+{% load compress %}
+
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -11,21 +14,25 @@
   <title>Novena- Health & Care Medical template</title>
 
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="{% static '/images/favicon.ico' %}" />
-
-  <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="shortcut icon" type="image/x-icon" href="{% static '/images/favicon.png' %}" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-  <!-- Icon Font Css -->
-  <link rel="stylesheet" href="{% static 'plugins/icofont/icofont.min.css' %}">
+  {% compress css %}
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">
+
   <!-- Slick Slider  CSS -->
   <link rel="stylesheet" href="{% static 'plugins/slick-carousel/slick/slick.css' %}">
   <link rel="stylesheet" href="{% static 'plugins/slick-carousel/slick/slick-theme.css' %}">
-
+  
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="{% static 'plugins/icofont/icofont.min.css' %}">
+  {% endcompress  %}
+  
+  
 </head>
 
 <body id="top">
@@ -211,6 +218,8 @@
     =====================================-->
 
     
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>  
+	{% compress js %}  
     <!-- Main jQuery -->
     <script src="{% static 'plugins/jquery/jquery.js' %}"></script>
     <!-- Bootstrap 4.3.2 -->
@@ -226,10 +235,9 @@
     <script src="{% static 'plugins/counterup/jquery.counterup.min.js' %}"></script>
     <!-- Google Map -->
     <script src="{% static 'plugins/google-map/map.js' %}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
     
     <script src="{% static 'js/script.js' %}"></script>
-    
+    {% endcompress %}
 
     <!-- Optional Javascript -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
