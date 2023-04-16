@@ -7,7 +7,7 @@
 
 
 ## Instalation
-> 1. clone repo https://github.com/ali-abbaszade/HealthCare.git
+> 1. clone repo 
 > 2. create virtual enviroment and activate
 >     - python -m venv venv
 >     - venv\Scripts\activate (Windows)
